@@ -58,10 +58,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Contact Form Submission =====
+// ===== Contact Form Submission (Formspree) =====
 const supportForm = document.getElementById('supportForm');
 const submitBtn = document.getElementById('submitBtn');
 const formMessage = document.getElementById('formMessage');
+
+// REEMPLAZA este ID con el tuyo de Formspree
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/TU_ID_AQUI';
 
 supportForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -72,23 +75,21 @@ supportForm.addEventListener('submit', async (e) => {
     formMessage.textContent = '';
 
     const formData = new FormData(supportForm);
-    const data = Object.fromEntries(formData);
 
     try {
-        const response = await fetch('/api/tickets', {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
 
-        const result = await response.json();
-
         if (response.ok) {
+            const ticketId = 'TIC-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
             formMessage.classList.add('success');
-            formMessage.textContent = `✓ Solicitud enviada. Tu ticket #${result.ticketId} ha sido creado. Te contactaremos pronto.`;
+            formMessage.textContent = `✓ Solicitud enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
             supportForm.reset();
         } else {
-            throw new Error(result.error || 'Error al enviar');
+            throw new Error('Error al enviar');
         }
     } catch (err) {
         formMessage.classList.add('error');
