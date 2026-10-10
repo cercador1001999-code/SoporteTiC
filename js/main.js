@@ -100,6 +100,49 @@ supportForm.addEventListener('submit', async (e) => {
     }
 });
 
+// ===== Antivirus Form Submission (Formspree) =====
+const antivirusForm = document.getElementById('antivirusForm');
+const avSubmitBtn = document.getElementById('avSubmitBtn');
+const avFormMessage = document.getElementById('avFormMessage');
+
+// Mismo endpoint por ahora - puedes crear uno nuevo en Formspree para separar los formularios
+const FORMSPREE_AV_ENDPOINT = 'https://formspree.io/f/mwlvbpjg';
+
+antivirusForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    avSubmitBtn.classList.add('loading');
+    avSubmitBtn.disabled = true;
+    avFormMessage.className = 'form-message';
+    avFormMessage.textContent = '';
+
+    const formData = new FormData(antivirusForm);
+    formData.append('_subject', 'Nueva consulta de Antivirus - Segurmática');
+
+    try {
+        const response = await fetch(FORMSPREE_AV_ENDPOINT, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            const ticketId = 'AV-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+            avFormMessage.classList.add('success');
+            avFormMessage.textContent = `✓ Consulta enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
+            antivirusForm.reset();
+        } else {
+            throw new Error('Error al enviar');
+        }
+    } catch (err) {
+        avFormMessage.classList.add('error');
+        avFormMessage.textContent = '✗ Error al enviar la consulta. Intenta nuevamente o escríbenos a virus@segurmatica.cu';
+    } finally {
+        avSubmitBtn.classList.remove('loading');
+        avSubmitBtn.disabled = false;
+    }
+});
+
 // ===== Terminal Animation =====
 const terminalLines = document.querySelectorAll('.terminal-body .terminal-line');
 let lineIndex = 0;

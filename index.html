@@ -26,6 +26,7 @@
                 <li><a href="#servicios" class="nav-link">Servicios</a></li>
                 <li><a href="#ciberseguridad" class="nav-link">Ciberseguridad</a></li>
                 <li><a href="#por-que" class="nav-link">¿Por qué nosotros?</a></li>
+                <li><a href="#antivirus" class="nav-link">Antivirus</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
                 <li><a href="#contacto" class="nav-link nav-cta">Solicitar soporte</a></li>
             </ul>
@@ -378,6 +379,107 @@
         </div>
     </section>
 
+    <!-- Antivirus Section -->
+    <section class="antivirus" id="antivirus">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Segurmática Antivirus</span>
+                <h2 class="section-title">Protección antivirus profesional</h2>
+                <p class="section-description">
+                    En alianza con Segurmática, ofrecemos soluciones antivirus de nivel empresarial. Reporta virus, solicita licencias o consulta sobre nuestros productos de seguridad.
+                </p>
+            </div>
+            <div class="antivirus-grid">
+                <div class="antivirus-info">
+                    <div class="antivirus-card">
+                        <div class="antivirus-card-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <h4>Atención a Clientes</h4>
+                        <p>Conozca sobre los productos y servicios antivirus, así como la contratación de licencias.</p>
+                        <div class="antivirus-contact">
+                            <div class="antivirus-label">Teléfono</div>
+                            <div class="antivirus-value">+53 7870 3538</div>
+                            <div class="antivirus-label">Email</div>
+                            <div class="antivirus-value">clientes@segurmatica.cu</div>
+                        </div>
+                    </div>
+                    <div class="antivirus-card">
+                        <div class="antivirus-card-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4l-4 4h3v6c0 2.21-1.79 4-4 4s-4-1.79-4-4V8h3L8 4 4 8h3v6c0 3.31 2.69 6 6 6s6-2.69 6-6V8h3z"/></svg>
+                        </div>
+                        <h4>Reporte de Virus</h4>
+                        <p>Reporte de muestras sospechosas y falsos positivos para el análisis del laboratorio.</p>
+                        <div class="antivirus-contact">
+                            <div class="antivirus-label">Teléfono</div>
+                            <div class="antivirus-value">+53 7878 2665</div>
+                            <div class="antivirus-label">Email</div>
+                            <div class="antivirus-value">virus@segurmatica.cu</div>
+                        </div>
+                    </div>
+                    <div class="antivirus-card">
+                        <div class="antivirus-card-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+                        </div>
+                        <h4>Convocatorias</h4>
+                        <p>Participe como probador de nuestras soluciones y productos en fase de evaluación.</p>
+                        <div class="antivirus-contact">
+                            <div class="antivirus-label">Email</div>
+                            <div class="antivirus-value">convocatoria@segurmatica.cu</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="antivirus-form-wrapper">
+                    <form id="antivirusForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="av-name">Nombre completo *</label>
+                            <input type="text" id="av-name" name="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="av-email">Correo electrónico *</label>
+                                <input type="email" id="av-email" name="email" required placeholder="tu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="av-phone">Teléfono</label>
+                                <input type="tel" id="av-phone" name="phone" placeholder="+53 5 XXXX XXXX">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="av-type">Tipo de consulta *</label>
+                            <select id="av-type" name="consulta_tipo" required>
+                                <option value="">Selecciona el tipo de consulta</option>
+                                <option value="atencion-clientes">Atención a Clientes</option>
+                                <option value="soporte-tecnico">Soporte Técnico</option>
+                                <option value="reporte-virus">Reporte de Virus</option>
+                                <option value="convocatorias">Convocatorias</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="av-product">Producto de interés</label>
+                            <select id="av-product" name="producto">
+                                <option value="">Selecciona un producto (opcional)</option>
+                                <option value="segurmatica-av">Segurmática Antivirus</option>
+                                <option value="licencia">Solicitud de Licencia</option>
+                                <option value="actualizacion">Actualización</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="av-message">Describe tu consulta *</label>
+                            <textarea id="av-message" name="message" rows="4" required placeholder="Describe tu consulta, reporte de virus o solicitud..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="avSubmitBtn">
+                            <span class="btn-text">Enviar consulta</span>
+                            <span class="btn-spinner"></span>
+                        </button>
+                        <div class="form-message" id="avFormMessage"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contacto">
         <div class="section-container">
@@ -492,6 +594,7 @@
                 <h4>Empresa</h4>
                 <ul>
                     <li><a href="#por-que">¿Por qué nosotros?</a></li>
+                    <li><a href="#antivirus">Antivirus</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                     <li><a href="#">Términos de servicio</a></li>
                     <li><a href="#">Política de privacidad</a></li>
