@@ -868,6 +868,10 @@ img { max-width: 100%; }
     background: var(--bg-secondary);
 }
 
+.antivirus-update-btn {
+    margin-top: 24px;
+}
+
 .antivirus-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
