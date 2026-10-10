@@ -63,8 +63,8 @@ const supportForm = document.getElementById('supportForm');
 const submitBtn = document.getElementById('submitBtn');
 const formMessage = document.getElementById('formMessage');
 
-// Web3Forms access key
-const WEB3FORMS_KEY = '4279018c-2fa3-4179-a282-8bf8803f49e1';
+// Formspree endpoint for ticket submissions
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvbpjg';
 
 supportForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -75,21 +75,15 @@ supportForm.addEventListener('submit', async (e) => {
     formMessage.textContent = '';
 
     const formData = new FormData(supportForm);
-    const data = Object.fromEntries(formData);
-    data.access_key = WEB3FORMS_KEY;
-    data.subject = 'Nuevo ticket de soporte - SoporteTIC';
-    data.from_name = 'SoporteTIC.shop';
 
     try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
 
-        const result = await response.json();
-
-        if (result.success) {
+        if (response.ok) {
             const ticketId = 'TIC-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
             formMessage.classList.add('success');
             formMessage.textContent = `✓ Solicitud enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
@@ -111,8 +105,8 @@ const antivirusForm = document.getElementById('antivirusForm');
 const avSubmitBtn = document.getElementById('avSubmitBtn');
 const avFormMessage = document.getElementById('avFormMessage');
 
-// Web3Forms endpoint for antivirus submissions
-const WEB3FORMS_AV_KEY = '4279018c-2fa3-4179-a282-8bf8803f49e1';
+// Formspree endpoint for antivirus submissions
+const FORMSPREE_AV_ENDPOINT = 'https://formspree.io/f/mwlvbpjg';
 
 antivirusForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -123,21 +117,16 @@ antivirusForm.addEventListener('submit', async (e) => {
     avFormMessage.textContent = '';
 
     const formData = new FormData(antivirusForm);
-    const data = Object.fromEntries(formData);
-    data.access_key = WEB3FORMS_AV_KEY;
-    data.subject = 'Nueva consulta de Antivirus - Segurmatica';
-    data.from_name = 'SoporteTIC - Antivirus';
+    formData.append('_subject', 'Nueva consulta de Antivirus - Segurmática');
 
     try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch(FORMSPREE_AV_ENDPOINT, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
+            body: formData,
+            headers: { 'Accept': 'application/json' }
         });
 
-        const result = await response.json();
-
-        if (result.success) {
+        if (response.ok) {
             const ticketId = 'AV-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
             avFormMessage.classList.add('success');
             avFormMessage.textContent = `✓ Consulta enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
