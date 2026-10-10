@@ -87,6 +87,10 @@ supportForm.addEventListener('submit', async (e) => {
             const ticketId = 'TIC-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
             formMessage.classList.add('success');
             formMessage.textContent = `✓ Solicitud enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
+            // Enviar copia a Supabase
+            if (window.trackFormSubmission) {
+                window.trackFormSubmission('soporte', Object.fromEntries(formData));
+            }
             supportForm.reset();
         } else {
             throw new Error('Error al enviar');
@@ -130,6 +134,10 @@ antivirusForm.addEventListener('submit', async (e) => {
             const ticketId = 'AV-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
             avFormMessage.classList.add('success');
             avFormMessage.textContent = `✓ Consulta enviada. Tu ticket #${ticketId} ha sido creado. Te contactaremos pronto.`;
+            // Enviar copia a Supabase
+            if (window.trackFormSubmission) {
+                window.trackFormSubmission('antivirus', Object.fromEntries(formData));
+            }
             antivirusForm.reset();
         } else {
             throw new Error('Error al enviar');
