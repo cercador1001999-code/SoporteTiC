@@ -995,6 +995,31 @@ img { max-width: 100%; }
     margin-bottom: 8px;
 }
 
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.footer-social a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
 .footer-bottom {
     max-width: 1280px;
     margin: 0 auto;
