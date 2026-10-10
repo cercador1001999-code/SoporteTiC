@@ -63,8 +63,8 @@ const supportForm = document.getElementById('supportForm');
 const submitBtn = document.getElementById('submitBtn');
 const formMessage = document.getElementById('formMessage');
 
-// REEMPLAZA este ID con el tuyo de Formspree
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/TU_ID_AQUI';
+// Formspree endpoint for ticket submissions
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvbpjg';
 
 supportForm.addEventListener('submit', async (e) => {
     e.preventDefault();
