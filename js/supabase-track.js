@@ -2,28 +2,32 @@
 const SUPABASE_URL = 'https://pojkzeitnccrzmmfplaq.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_chNtOK7xA5R1UF57BHiB-A_emqKCWze';
 
-// Obtener país del visitante
-async function getCountry() {
+// Obtener país e IP del visitante
+async function getGeoData() {
     try {
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
-        return data.country_name || 'Desconocido';
+        return {
+            country: data.country_name || 'Desconocido',
+            ip: data.ip || null
+        };
     } catch {
-        return null;
+        return { country: null, ip: null };
     }
 }
 
 // Registrar visita al cargar la página
 (async function trackVisit() {
     try {
-        const country = await getCountry();
+        const geo = await getGeoData();
         const visitData = {
             page: window.location.pathname,
             referrer: document.referrer || null,
             user_agent: navigator.userAgent,
             language: navigator.language,
             screen_resolution: `${screen.width}x${screen.height}`,
-            country: country
+            country: geo.country,
+            ip: geo.ip
         };
 
         await fetch(`${SUPABASE_URL}/rest/v1/visits`, {
