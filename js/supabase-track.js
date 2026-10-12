@@ -2,18 +2,45 @@
 const SUPABASE_URL = 'https://pojkzeitnccrzmmfplaq.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_chNtOK7xA5R1UF57BHiB-A_emqKCWze';
 
-// Obtener país e IP del visitante
+// Obtener país e IP del visitante (con fallback)
 async function getGeoData() {
+    // Intentar con ipapi.co
     try {
         const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        return {
-            country: data.country_name || 'Desconocido',
-            ip: data.ip || null
-        };
-    } catch {
-        return { country: null, ip: null };
-    }
+        if (res.ok) {
+            const data = await res.json();
+            if (data.ip) {
+                return {
+                    country: data.country_name || 'Desconocido',
+                    ip: data.ip
+                };
+            }
+        }
+    } catch {}
+    // Fallback: ipwho.is
+    try {
+        const res = await fetch('https://ipwho.is/');
+        if (res.ok) {
+            const data = await res.json();
+            if (data.ip) {
+                return {
+                    country: data.country || 'Desconocido',
+                    ip: data.ip
+                };
+            }
+        }
+    } catch {}
+    // Fallback: api.ipify.org (solo IP, sin país)
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        if (res.ok) {
+            const data = await res.json();
+            if (data.ip) {
+                return { country: null, ip: data.ip };
+            }
+        }
+    } catch {}
+    return { country: null, ip: null };
 }
 
 // Registrar visita al cargar la página
