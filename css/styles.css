@@ -868,6 +868,56 @@ img { max-width: 100%; }
     background: var(--bg-secondary);
 }
 
+/* ===== About Us Section ===== */
+.about-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.about-link {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+}
+
+.about-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.about-social a {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+}
+
+.about-social a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
 .antivirus-update-btn {
     margin-top: 24px;
 }
